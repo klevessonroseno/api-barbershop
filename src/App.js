@@ -1,9 +1,9 @@
 import express from 'express';
+import routes from './routes';
 
 class App {
   constructor() {
     this.server = express();
-
     this.middlewares();
     this.routes();
   }
@@ -13,8 +13,8 @@ class App {
   }
 
   routes() {
-    this.server.use();
+    this.server.use(routes);
   }
 }
 
-new App().server.listen(3333);
+export default new App().server;
