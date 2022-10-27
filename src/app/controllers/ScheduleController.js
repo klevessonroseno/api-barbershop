@@ -41,7 +41,6 @@ class ScheduleController {
           attributes: ['id', 'name', 'email'],
         },
       ],
-
     });
 
     return res.json(appointments);
