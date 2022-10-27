@@ -8,9 +8,9 @@ class UserController {
       }
     });
 
-    if(userExists) {
+    if (userExists) {
       return res.status(409).json({
-        error: 'User already exists.', 
+        error: 'User already exists.',
       });
     }
 
@@ -18,14 +18,44 @@ class UserController {
 
     return res.status(201).json({
       id,
-      name, 
-      email, 
+      name,
+      email,
       provider,
     });
   }
 
   async update(req, res) {
-    return res.status(204).json();
+    const { email, oldPassword } = req.body;
+
+    const user = await User.findByPk(req.userId);
+
+    if (email !== user.email) {
+      const userExists = await User.findOne({
+        where: { email },
+      });
+
+      if (userExists) {
+        return res.status(409).json({
+          error: 'User already exists.',
+        });
+      }
+    }
+
+    if (oldPassword && !(await user.checkPassword(oldPassword))) {
+      return res.status(401).json({
+       error: 'Password does not match.',
+      }); 
+    }
+
+    const { id, name, provider } = await user.update(req.body);
+
+
+    return res.status(200).json({
+      id, 
+      name, 
+      email, 
+      provider,
+    });
   }
 }
 
