@@ -160,12 +160,14 @@ class AppointmentController {
 
     await appointment.save();
 
+    const [providerFirstName] = appointment.provider.name.split(' ');
+
     await Mail.sendMail({
       to: `${appointment.provider.name} <${appointment.provider.email}>`,
       subject: 'Agendamento cancelado.', 
       template: 'cancellation',
       context: {
-        provider: appointment.provider.name,
+        provider: providerFirstName,
         user: appointment.user.name,
         date: format(
           appointment.date,
