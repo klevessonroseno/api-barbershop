@@ -21,6 +21,12 @@ class AppointmentController {
 
     const { provider_id, date } = req.body;
 
+    if (provider_id == req.userId) {
+      return res.status(400).json({
+        error: 'You cannot create an appointment yourself.',
+      });
+    }
+
     const checkIsProvider = await User.findOne({
       where: {
         id: provider_id,
