@@ -6,11 +6,14 @@
   "author": "klevessonroseno <klevesson.developer@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@sentry/node": "^7.17.2",
+    "@sentry/tracing": "^7.17.2",
     "bcryptjs": "^2.4.3",
     "bee-queue": "^1.4.0",
     "date-fns": "^2.0.0-beta.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
     "express-handlebars": "^6.0.6",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.0",
@@ -20,6 +23,7 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.25.3",
+    "youch": "^3.2.2",
     "yup": "^0.32.11"
   },
   "scripts": {
