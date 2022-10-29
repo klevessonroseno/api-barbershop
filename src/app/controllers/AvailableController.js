@@ -1,7 +1,5 @@
 import { startOfDay, endOfDay, setHours, setMinutes, setSeconds, format, isAfter } from 'date-fns';
 import { Op } from 'sequelize';
-
-import User from '../models/User';
 import Appointment from '../models/Appointment';
 
 class AvailableController {
@@ -16,7 +14,7 @@ class AvailableController {
 
     const searchDate = Number(date);
 
-    const appointments = await Appointment.find2All({
+    const appointments = await Appointment.findAll({
       where: {
         provider_id: req.params.providerId,
         canceled_at: null,
