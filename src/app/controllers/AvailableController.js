@@ -60,7 +60,9 @@ class AvailableController {
         available: 
           isAfter(value, new Date()) 
           &&
-          !appointments.find(a => format(a.date, 'HH:mm') === time),
+          !appointments.find(
+            appointment => format(appointment.date, 'HH:mm') === time
+          ),
       }
     });
 
